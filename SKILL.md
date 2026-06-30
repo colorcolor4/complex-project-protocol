@@ -11,6 +11,7 @@ Large-but-non-design tasks run directly after the brake — do **not** invoke th
 ## Operating mode
 
 - **A stage spans as many exchanges as it needs** (propose → discuss → decide). Keep iterating within the current stage; **advance to the next stage only on the user's explicit go.**
+- **Continuous run (opt-in).** Default = stop at each stage boundary. If the user explicitly says to run straight through (e.g. "跑完 S1–S3 / run all stages"), proceed across stages without pausing: write each `protocol/S<n>.md` as you go, and make the trade-off calls yourself from the aligned goal + stated assumptions, logging each under `## Decisions` / `## Rejected`. Two hard stops remain: pause for any fork that genuinely **can't** be defaulted (ask, don't guess), and stop before the final handoff (`CC_Develope_Spec.md`) for approval.
 - **Orient when resuming cold** (new session / after compaction): read the latest `protocol/S*.md`, then open with one line — *"We're in S<n>; settled: …; open: …"*. Highest-numbered file = current stage; none = start S1. Create `protocol/` (under the project working dir) if missing.
 - **Write `protocol/S<n>.md` only when that stage is approved-done**, right before advancing — never mid-discussion. Use the Stage Summary structure below; English, Markdown + LaTeX, self-contained so a cold round resumes with nothing else.
 - **Backtracking is allowed.** To revise an earlier stage, edit its `S<n>.md` and state the downstream impact on later stages before continuing.
