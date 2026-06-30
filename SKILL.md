@@ -1,6 +1,6 @@
 ---
 name: complex-project-protocol
-description: Three-stage design protocol for large, complex projects — especially scientific and engineering work (systems, solutions, architectures, algorithms) that requires trade-offs before building. Trigger when starting such a project, or when the global CLAUDE.md brake routes a "large + design-class" task here. One conversation round = one stage; each round ends with a fixed English summary the user re-uploads as the ref for the next round. Not for small tasks or large-but-non-design tasks (those run directly after the brake).
+description: Three-stage design protocol for large, complex projects — especially scientific and engineering work (systems, solutions, architectures, algorithms) that requires trade-offs before building. Trigger when starting such a project, or when the global CLAUDE.md brake routes a "large + design-class" task here. One conversation round = one stage; each round writes a fixed English summary to protocol/S<n>.md so the next round can resume cold. Not for small tasks or large-but-non-design tasks (those run directly after the brake).
 ---
 
 # Complex Project Protocol
@@ -11,8 +11,9 @@ Large-but-non-design tasks run directly after the brake — do **not** invoke th
 ## Operating mode
 
 - **One round = one stage.** Never advance on your own; at each stage end, STOP and wait for explicit instruction.
-- **Open every round by reading the prior stage summary** (the ref) to re-align before discussing.
-- **End every round with the Stage Summary** (fixed structure below), in English, Markdown + LaTeX. The user uploads it as the ref for the next round.
+- **Continuity is on disk.** All stage handoffs live in `protocol/` under the project working dir, so any round can start cold and resume.
+  - **Open every round** by reading the latest `protocol/S*.md` (re-align before discussing). If `protocol/` is missing, create it.
+  - **End every round** by writing the Stage Summary (fixed structure below) to `protocol/S<n>.md` — English, Markdown + LaTeX, self-contained so the next round needs nothing else.
 - Track two parallel lines throughout: **physics line** (the real-world model) and **software line** (what gets built). Keep both visible.
 
 ## Stages
@@ -46,5 +47,5 @@ Large-but-non-design tasks run directly after the brake — do **not** invoke th
 
 ## Handoff (after all three stages)
 
-Propose generating `CC_Develope_Spec.md` by filling `spec_template.md` (in this skill dir).
+Propose generating `CC_Develope_Spec.md` (at the project root) by filling `spec_template.md` (in this skill dir).
 Begin only after the user's approval. Output must be self-contained for Claude Code to implement directly.
